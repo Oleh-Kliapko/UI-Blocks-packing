@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    "module": "es2015",
+    "target": "es2015",
+    "lib": [
+      "dom",
+      "es6",
+      "dom.iterable",
+      "scripthost"
+    ],
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "removeComments": true,
+    "noEmitOnError": true,
+    "strict": true,
+    "sourceMap": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+  },
+
+  "include": [
+    "src/**/*.ts"
+, "src/api/downloadData.js"  ],
+  "exclude": [
+    "node_modules",
+    "**/dist",
+    "**/*.spec.ts"
+  ]
+}

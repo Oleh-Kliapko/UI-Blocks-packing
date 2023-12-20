@@ -1,0 +1,29 @@
+{
+  "name": "UIBlocks",
+  "version": "1.0.0",
+  "description": "App for efficient placement of blocks",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "npx tsc --watch",
+    "start": "lite-server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Oleh-Kliapko/UI-Blocks-test-task.git"
+  },
+  "author": "Oleh Kliapko",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Oleh-Kliapko/UI-Blocks-test-task/issues"
+  },
+  "homepage": "https://github.com/Oleh-Kliapko/UI-Blocks-test-task#readme",
+  "devDependencies": {
+    "@types/node": "^20.10.5",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "lite-server": "^2.6.1"
+  }
+}
