@@ -1,4 +1,4 @@
-export function calc(blocks, container) {
+export function calcAreas(blocks, container, gapsArea) {
   const containerArea = container.width * container.height;
   const blocksArea = blocks.reduce(
     (area, block) => area + block.width * block.height,
@@ -6,7 +6,6 @@ export function calc(blocks, container) {
   );
 
   return {
-    fullness: 1 - (containerArea - blocksArea) / containerArea,
     containerArea,
     blocksArea,
   };

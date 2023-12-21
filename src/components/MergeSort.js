@@ -42,7 +42,7 @@ class MergeSort {
       }
     }
 
-    let INF = this.Compare ? 99999999 : -99999999;
+    let INF = this.compare ? 99999999 : -99999999;
     this.tempFirst[middle - start + 1] = INF;
     this.tempSecond[end - middle] = INF;
 

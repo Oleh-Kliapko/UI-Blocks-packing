@@ -1,16 +1,19 @@
 import { createBlocks } from "./app/createBlocks.js";
 import { packBlocks } from "./app/packBlocks.js";
+import { ui } from "./app/ui.js";
 
 import { downloadData } from "./api/downloadData.js";
+
 import { errorFetchData, errorAreas } from "./helpers/errors.js";
-import { calc } from "./helpers/calc.js";
+import { calcAreas } from "./helpers/calcAreas.js";
 
 async function runApp() {
   try {
     const containerData = await downloadData("../data/container.json");
     const canvas = document.getElementById("container");
+    const fullnessValue = document.getElementById("fullness");
 
-    if (!canvas) return;
+    if (!canvas || !fullnessValue) return;
 
     if (!containerData || !containerData.width || !containerData.height) {
       errorFetchData("Container", canvas);
@@ -26,7 +29,7 @@ async function runApp() {
       return;
     }
 
-    const squares = calc(blocksData, container);
+    const squares = calcAreas(blocksData, containerData);
 
     if (squares.blocksArea > squares.containerArea) {
       errorAreas(canvas);
@@ -34,19 +37,23 @@ async function runApp() {
     }
 
     const blocks = createBlocks(blocksData);
-    packBlocks(containerData, blocks, canvas);
-    draw(canvas, blocks);
+    const { blockCoordinates, gapsArea } = packBlocks(
+      containerData,
+      blocks,
+      canvas
+    );
+
+    const fullness = 1 - gapsArea / (squares.blocksArea + gapsArea);
+    fullnessValue.textContent = `Fullness: ${Math.round(fullness * 100)}%`;
+
+    console.log("Block Coordinates:", {
+      fullness,
+      blockCoordinates,
+    });
+
+    ui(canvas, blocks);
   } catch (error) {
     console.error("Error loading data:", error);
-  }
-}
-
-function draw(canvas, blocks) {
-  const ctx = canvas.getContext("2d");
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-  for (let i = 0; i < blocks.length; i++) {
-    blocks[i].draw(ctx);
   }
 }
 

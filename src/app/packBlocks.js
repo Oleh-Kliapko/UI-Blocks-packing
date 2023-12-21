@@ -22,6 +22,7 @@ export function packBlocks(containerData, blocks, canvas) {
     containerData.height
   );
   let result = packedBlocks.RESULT;
+  let gaps = packedBlocks.GAPS;
 
   for (let i = 0; i < arrBlocksLength; ++i) {
     let current = blocks[i];
@@ -37,5 +38,11 @@ export function packBlocks(containerData, blocks, canvas) {
     });
   }
 
-  return { blockCoordinates };
+  return {
+    blockCoordinates,
+    gapsArea: gaps.reduce(
+      (acc, gap) => acc + (gap.right - gap.left) * (gap.bottom - gap.top),
+      0
+    ),
+  };
 }

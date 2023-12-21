@@ -33,6 +33,7 @@ class Block {
 
   drawBorder(ctx) {
     ctx.strokeStyle = this.borderColor;
+    ctx.lineWidth = 0.5;
     ctx.strokeRect(this.X, this.Y, this.W, this.H);
   }
 
@@ -42,15 +43,17 @@ class Block {
   }
 
   drawTitle(ctx) {
-    ctx.font = "bold 14px Arial";
-    ctx.fillStyle = "black";
-
     const textWidth = ctx.measureText(this.title).width;
-    const textHeight = 14;
+    const textHeight = 12;
 
     const x = this.X + (this.W - textWidth) / 2;
     const y = this.Y + (this.H + textHeight) / 2;
 
+    ctx.fillStyle = "white";
+    ctx.fillRect(x - 1, y - textHeight, textWidth + 4, textHeight + 4);
+
+    ctx.font = "12px Arial";
+    ctx.fillStyle = "black";
     ctx.fillText(this.title, x, y);
   }
 }

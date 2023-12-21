@@ -9,6 +9,27 @@ class PackingAlgorithm {
     this.calculateAreas();
     this.sortAreas();
     this.pack();
+    this.calculateGaps();
+  }
+
+  calculateGaps() {
+    this.GAPS = [];
+
+    for (let i = 0; i < this.RESULT.length - 1; ++i) {
+      const gap = {
+        left: this.RESULT[i][0] + this.RECT[i][0],
+        right: this.RESULT[i + 1][0],
+        top: Math.max(this.RESULT[i][1], this.RESULT[i + 1][1]),
+        bottom: Math.min(
+          this.RESULT[i][1] + this.RECT[i][1],
+          this.RESULT[i + 1][1] + this.RECT[i + 1][1]
+        ),
+      };
+
+      if (gap.right > gap.left && gap.bottom > gap.top) {
+        this.GAPS.push(gap);
+      }
+    }
   }
 
   pack() {
@@ -57,7 +78,7 @@ class PackingAlgorithm {
       }
 
       if (minAreaNode == -1) {
-        this.RESULT[k] = [width, height];
+        this.RESULT[k] = [currentWidth, currentHeight];
       } else {
         let bestNode = nodes[minAreaNode];
         this.putBox(bestNode, k);
