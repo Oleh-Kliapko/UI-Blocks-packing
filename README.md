@@ -1,4 +1,4 @@
-# UI-Blocks-test-task
+# Blocks are packed (using Canvas)
 
 ## Functional that efficiently places rectangular blocks in rectangular 2D container.
 
